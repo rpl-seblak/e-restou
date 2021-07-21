@@ -12,7 +12,7 @@
           </div>
 
           <div class="section-body">
-            @yield('content-admin')
+            @yield('content-pegawai')
           </div>
         </section>
     </div>

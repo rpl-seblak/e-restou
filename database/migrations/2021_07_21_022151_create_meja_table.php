@@ -16,7 +16,6 @@ class CreateMejaTable extends Migration
         Schema::create('meja', function (Blueprint $table) {
             $table->smallIncrements('id_meja');
             $table->string('no_meja',2);
-            $table->double('harga_menu');
             $table->boolean('ketersediaan');
             $table->timestamps();
         });
