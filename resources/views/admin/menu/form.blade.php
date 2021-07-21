@@ -12,7 +12,7 @@
                 <!-- <h5 class="card-title">Special title treatment</h5> -->
                 <div class="row">
                     <div class="col-md-12">
-                    <form method="POST" action="{{-- route('menu.store') --}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('menu.store')}}" enctype="multipart/form-data">
                     @csrf
                        
                         <div class="form-group">
@@ -22,10 +22,10 @@
                                 <h6 class="text-danger">{{ $message }}</h6>
                             @enderror
                         </div>
-                        <div class="form-group">
+              <!--         <div class="form-group">
                             <label>Satuan</label>
                             <input type="text" name="satuan" id="satuan" class="form-control" id="inlineFormInputGroup">
-                        </div>
+                        </div>-->
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Harga</label>

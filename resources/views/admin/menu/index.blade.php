@@ -14,7 +14,7 @@
                     <p>{{ session('pesan') }}</p>
                 </div>
                 @endif
-                <a href="{{-- route('menu.create') --}}" class="btn btn-primary float-right">Tambah Menu</a>
+                <a href="{{route('menu.create')}}" class="btn btn-primary float-right">Tambah Menu</a>
                 <div class="table-responsive">
                     <table class="table table-striped dataTable no-footer" id="table-1">
                         <thead>
@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($menus as $value)
+                             @foreach($menus as $value)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$value->nama_menu}}</td>
@@ -35,9 +35,9 @@
                                 <td>{{$value->stok}}</td>
                                 <td>
                                     <div class="row">
-                                        <a href="{{route('barang.edit',$value->kode_barang)}}"
+                                        <a href="{{route('menu.edit',$value->id_menu)}}"
                                             class="btn btn-info btn-icon mr-1"><i class="fas fa-pencil-alt"></i></a>
-                                        <form action="{{route('barang.destroy',$value->kode_barang)}}" method="post">
+                                        <form action="{{route('menu.destroy',$value->id_menu)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
@@ -49,7 +49,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach 
                         </tbody>
                     </table>
                 </div>

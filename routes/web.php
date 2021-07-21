@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +21,10 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     Route::view('dashboard','admin.dashboard');
-    Route::view('menu/create','admin.menu.form');
-    Route::view('menu/','admin.menu.index');
+ //   Route::view('menu/create','admin.menu.form');
+ //   Route::view('menu/','admin.menu.index');
 });
-
+Route::resource('menu', MenuController::class);
 
 Auth::routes();
 
