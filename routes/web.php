@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\MenuController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:koki'])->group(function () {
         Route::prefix('koki')->group(function () {
             Route::view('/dashboard','koki.index')->name('koki.index');
+            Route::resource('menu', MenuController::class);
         });
     });
 
