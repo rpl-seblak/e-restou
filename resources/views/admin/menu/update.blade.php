@@ -1,6 +1,6 @@
 @extends('layouts.master-pegawai')
 @section('section-header','Ubah Data Menu')
-@section('content-admin')
+@section('content-pegawai')
 <div class="card">
             <div class="card-body">
            

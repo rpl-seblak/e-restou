@@ -52,5 +52,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::view('/menu','menu.index')->name('kasir.index');
 });
 
+//Route::resource('menu', MenuController::class);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
