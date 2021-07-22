@@ -13,7 +13,7 @@
               </li>
               @if(Auth::user()->role == 'admin' ||Auth::user()->role == 'koki' )
               <li class="nav-item">
-                <a href="{{ route('menu.index') }}" class="nav-link"><i class="fas fa-utensils"></i><span>Data Menu</span></a>
+                <a href="{{route('menu.index')}}" class="nav-link"><i class="fas fa-utensils"></i><span>Data Menu</span></a>
               </li>
               @endif
               <!-- <li class="nav-item">

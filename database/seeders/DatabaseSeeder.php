@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         ))
         ->create();
         
-        \App\Models\Meja::factory()
-        ->count(6)
-        ->sequence(fn ($sequence) => ['no_meja' => $sequence->index+1])
-        ->create();
+ //       \App\Models\Meja::factory()
+ //       ->count(6)
+  //      ->sequence(fn ($sequence) => ['no_meja' => $sequence->index+1])
+  //      ->create();
     }
 }
