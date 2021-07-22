@@ -1,6 +1,6 @@
 @extends('layouts.master-pegawai')
 @section('section-header','Data Menu')
-@section('content-admin')
+@section('content-pegawai')
 
 <div class="row">
     <div class="col-sm-12">

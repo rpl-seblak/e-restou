@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('koki')->group(function () {
             Route::view('/dashboard','koki.index')->name('koki.index');
             Route::resource('menu', MenuController::class);
+            Route::get('/pesanan',[PesananController::class,'listPesananKoki'])->name('koki-pesanan.index');
+            Route::get('/pesanan/{id}',[PesananController::class,'detailPesananKoki'])->name('koki-detail.index');
         });
     });
 

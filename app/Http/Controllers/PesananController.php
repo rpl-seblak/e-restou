@@ -10,4 +10,12 @@ class PesananController extends Controller
         $meja = new Meja();
         return view('pelayan.meja-list',['meja'=>$meja->getAllMeja()]);
     }
+
+    public function listPesananKoki(){
+        return view('koki.pesanan');
+    }
+
+    public function detailPesananKoki(){
+        return view('koki.detail-pesanan');
+    }
 }
