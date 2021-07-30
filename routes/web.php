@@ -49,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('pelayan')->group(function () {
             Route::view('/dashboard','pelayan.index')->name('pelayan.index');
             Route::get('/meja',[PesananController::class , 'tampilMeja'])->name('pelayan.meja');
+
+            Route::get('/pesanan',[PesananController::class,'listPesananPelayan'])->name('pelayan-pesanan.index');
+            Route::get('/pesanan/{meja}',[PesananController::class,'createPesanan'])->name('pelayan-pesanan.create');
+            Route::post('/pesanan',[PesananController::class,'storePesanan'])->name('pelayan-pesanan.store');
         });
     });
     // Route::view('/menu','menu.index')->name('kasir.index');

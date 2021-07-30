@@ -13,7 +13,7 @@
               </li>
               @if(Auth::user()->role == 'admin' ||Auth::user()->role == 'koki' )
               <li class="nav-item">
-                <a href="{{route('menu.index')}}" class="nav-link"><i class="fas fa-utensils"></i><span>Data Menu</span></a>
+                <a href="{{route('menu.index')}}" class="nav-link"><i class="fas fa-utensils"></i><span>Menu</span></a>
               </li>
               @endif
               <!-- <li class="nav-item">
@@ -21,12 +21,12 @@
               </li> -->
               @if(Auth::user()->role == 'pelayan')
               <li class="nav-item">
-                <a href="{{ route('pelayan.meja') }}" class="nav-link"><i class="fas fa-table"></i><span>Data Meja</span></a>
+                <a href="{{ route('pelayan.meja') }}" class="nav-link"><i class="fas fa-table"></i><span>Meja</span></a>
               </li>  
               @endif
               @if(Auth::user()->role != 'kasir')
               <li class="nav-item">
-                <a href="@if(Auth::user()->role == 'koki'){{route('koki-pesanan.index')}}@else{{ route('pelayan-pesanan.index') }}@endif" class="nav-link"><i class="fas fa-clipboard-list"></i><span>Data Pesanan</span></a>
+                <a href="@if(Auth::user()->role == 'koki'){{route('koki-pesanan.index')}}@else{{ route('pelayan-pesanan.index') }}@endif" class="nav-link"><i class="fas fa-clipboard-list"></i><span>Pesanan</span></a>
               </li>
               @endif
               <!-- <li class="nav-item">
@@ -34,7 +34,7 @@
               </li> -->
               @if(Auth::user()->role == 'kasir')
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-file-invoice"></i><span>Data Tagihan</span></a>
+                <a href="#" class="nav-link"><i class="fas fa-file-invoice"></i><span>Tagihan</span></a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fas fa-wallet"></i><span>Pembayaran</span></a>
