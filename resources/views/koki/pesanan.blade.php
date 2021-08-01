@@ -25,14 +25,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($pesanan as $value)
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>waiting</td>
+                                <td>{{$value->id_pesanan}}</td>
+                                <td>{{$value->id_meja}}</td>
                                 <td>
-                                    <a href="{{ route('koki-detail.index',2) }}" class="btn btn-primary">Proses</a>
+                                    {{ $value->status }}
+                                </td>
+                                <td>
+                                    @if($value->status == 'waiting')
+                                    <a href="{{ route('koki.detail-pesanan',$value->id_pesanan) }}" class="btn btn-primary">Proses</a>
+                                    @elseif($value->status == 'cooking')
+                                    <form action="{{ route('koki-pesanan.masak',$value->id_pesanan) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-success">Selesai</button>
+                                    </form>
+                                    @else
+                                    <p></p>
+                                    @endif
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

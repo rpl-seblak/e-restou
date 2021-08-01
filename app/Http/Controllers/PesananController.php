@@ -19,15 +19,19 @@ class PesananController extends Controller
     }
 
     public function listPesananKoki(){
-        return view('koki.pesanan');
+        $pesanan = Pesanan::where('status','!=','paid')->get();
+        return view('koki.pesanan',compact('pesanan'));
     }
 
-    public function detailPesananKoki(){
-        return view('koki.detail-pesanan');
+    public function detailPesananKoki($id){
+        $pesanan = Pesanan::where('id_pesanan',$id)->first();
+        $detail = $pesanan->detail_pesanan;
+        return view('koki.detail-pesanan',compact('pesanan','detail'));
     }
 
     public function listPesananPelayan(){
-        return view('pelayan.pesanan');
+        $pesanan = Pesanan::where('status','!=','paid')->get();
+        return view('pelayan.pesanan',compact('pesanan'));
     }
 
     public function createPesanan(){
@@ -82,6 +86,32 @@ class PesananController extends Controller
 
         return response()->json(['code'=>200, 'message'=>'Transaksi Berhasil'], 200);
 
+    }
+
+    public function updateStatusPesanan($id){
+        $pesanan = Pesanan::where('id_pesanan',$id)->first();
+        $newStatus;
+        switch ($pesanan->status) {
+            case 'waiting':
+                $newStatus = 'cooking';
+                break;
+            case 'cooking':
+                $newStatus = 'cooked';
+                break;
+            case 'cooked':
+                $newStatus = 'served';
+                break;
+            default:
+                break;
+        }
+        $pesanan->status = $newStatus;
+        $pesanan->save();
+        $role = auth()->user()->role;
+        if($role == 'koki'){
+            return redirect()->route('koki-pesanan.index');
+        }else if($role == 'pelayan'){
+            return redirect()->route('pelayan-pesanan.index');
+        }
     }
 
 }

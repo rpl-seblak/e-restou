@@ -1,5 +1,5 @@
 
-<div class="navbar-bg"></div>
+<div class="navbar-bg" style="height:70px"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PesananController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PesananController;
+use App\Http\Controllers\PembayaranController;
 
 
 /*
@@ -33,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:kasir'])->group(function () {
         Route::prefix('kasir')->group(function () {
             Route::view('/dashboard','kasir.index')->name('kasir.index');
+            Route::get('/pembayaran',[PembayaranController::class,'listPembayaran'])->name('kasir.pembayaran');
+            Route::get('/pembayaran/{id}',[PembayaranController::class,'showPembayaran'])->name('kasir.form-pembayaran');
+            Route::put('/pembayaran/{id}',[PembayaranController::class,'prosesPembayaran'])->name('kasir.proses-pembayaran');
+            Route::get('/laporan',[PembayaranController::class,'laporan'])->name('kasir.laporan');
         });
     });
 
@@ -41,7 +46,8 @@ Route::middleware(['auth'])->group(function () {
             Route::view('/dashboard','koki.index')->name('koki.index');
             Route::resource('menu', MenuController::class);
             Route::get('/pesanan',[PesananController::class,'listPesananKoki'])->name('koki-pesanan.index');
-            Route::get('/pesanan/{id}',[PesananController::class,'detailPesananKoki'])->name('koki-detail.index');
+            Route::get('/pesanan/{id}',[PesananController::class,'detailPesananKoki'])->name('koki.detail-pesanan');
+            Route::put('/pesanan/{id}',[PesananController::class,'updateStatusPesanan'])->name('koki-pesanan.masak');
         });
     });
 
@@ -53,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pesanan',[PesananController::class,'listPesananPelayan'])->name('pelayan-pesanan.index');
             Route::get('/pesanan/{meja}',[PesananController::class,'createPesanan'])->name('pelayan-pesanan.create');
             Route::post('/pesanan',[PesananController::class,'storePesanan'])->name('pelayan-pesanan.store');
+            Route::put('/pesanan/{id}',[PesananController::class,'updateStatusPesanan'])->name('pelayan-pesanan.served');
         });
     });
     // Route::view('/menu','menu.index')->name('kasir.index');

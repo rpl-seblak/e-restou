@@ -34,10 +34,10 @@
               </li> -->
               @if(Auth::user()->role == 'kasir')
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-file-invoice"></i><span>Tagihan</span></a>
+                <a href="{{ route('kasir.pembayaran') }}" class="nav-link"><i class="fas fa-wallet"></i><span>Pembayaran</span></a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-wallet"></i><span>Pembayaran</span></a>
+                <a href="{{ route('kasir.laporan') }}" class="nav-link"><i class="fas fa-wallet"></i><span>Laporan</span></a>
               </li>
               @endif
               <li class="nav-item">

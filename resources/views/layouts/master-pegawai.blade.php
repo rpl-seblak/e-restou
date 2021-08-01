@@ -4,11 +4,9 @@
 @include('layouts.navbar')
 @include('layouts.sidebar')
     <div class="main-content">
-        <section class="section">
-        <div class="section-header">
-            <h1>@yield('section-header')</h1>
-            <div class="section-header-breadcrumb">
-            </div>
+        <section class="section mt-4">
+        <div class="section-header d-none">
+            
           </div>
 
           <div class="section-body">

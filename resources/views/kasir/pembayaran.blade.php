@@ -11,27 +11,21 @@
                                 <th>Id Pesanan</th>
                                 <th>Nama Pelanggan</th>
                                 <th>No Meja</th>
-                                <th>Status</th>
+                                <th>Total Harga</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pesanan as $value)
+                            @foreach($pembayaran as $value)
                             <tr>
                                 <td>{{$value->id_pesanan}}</td>
                                 <td>{{$value->nama_pelanggan}}</td>
                                 <td>{{$value->id_meja}}</td>
                                 <td>
-                                    {{ $value->status }}
+                                    {{ $value->total_pembayaran }}
                                 </td>
                                 <td>
-                                    @if($value->status == 'cooked')
-                                    <form action="{{ route('pelayan-pesanan.served',$value->id_pesanan) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <button class="btn btn-primary">Disajikan</button>
-                                    </form>
-                                    @endif
+                                    <a href="{{ route('kasir.form-pembayaran',$value->id_pesanan) }}" class="btn btn-info">Bayar</a>
                                 </td>
                             </tr>
                             @endforeach
