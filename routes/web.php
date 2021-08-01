@@ -18,7 +18,7 @@ use App\Http\Controllers\PembayaranController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 Route::view('kasir2/index','kasir.index')->name('kasir.index2');
 Route::view('/menu','admin.menu.index');
