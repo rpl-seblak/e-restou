@@ -31,12 +31,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $value->menu->nama_menu }}</td>
                                 <td>{{ $value->qty }}</td>
-                                <td>{{ $value->qty*$value->menu->harga_menu }}</td>
+                                <td>Rp {{number_format($value->qty*$value->menu->harga_menu,0,'','.')}}</td>
                             </tr>
                             @endforeach
                             <tr>
                                 <td colspan="3">Total Harga</td>
-                                <td id="total"> {{ $pesanan->total_pembayaran }} </td>
+                                <td id="total"> Rp {{number_format($pesanan->total_pembayaran,0,'','.')}} </td>
                             </tr>
                         </tbody>
                     </table>

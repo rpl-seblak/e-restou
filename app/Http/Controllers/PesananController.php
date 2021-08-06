@@ -6,20 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-use App\Models\Meja;
 use App\Models\Menu;
 use App\Models\Pesanan;
 use App\Models\DetailPesanan;
 
 class PesananController extends Controller
 {
-    public function tampilMeja(){
-        $meja = new Meja();
-        return view('pelayan.meja-list',['meja'=>$meja->getAllMeja()]);
-    }
 
     public function listPesananKoki(){
-        $pesanan = Pesanan::where('status','!=','paid')->get();
+        $pesananObj = new Pesanan;
+        $pesanan = $pesananObj->getProcessedPesanan();
         return view('koki.pesanan',compact('pesanan'));
     }
 
@@ -30,7 +26,8 @@ class PesananController extends Controller
     }
 
     public function listPesananPelayan(){
-        $pesanan = Pesanan::where('status','!=','paid')->get();
+        $pesananObj = new Pesanan;
+        $pesanan = $pesananObj->getProcessedPesanan();
         return view('pelayan.pesanan',compact('pesanan'));
     }
 
@@ -40,6 +37,9 @@ class PesananController extends Controller
     }
 
     public function storePesanan(Request $request){
+        if(!isset($request->dataPesanan['nama'])){
+            return response()->json(['error'=>'Nama Pelanggan Tidak Boleh Kosong']);
+        }
         DB::transaction(function () use($request){
         $dataPesanan = $request->dataPesanan;
         $namaPelanggan = $dataPesanan['nama'];

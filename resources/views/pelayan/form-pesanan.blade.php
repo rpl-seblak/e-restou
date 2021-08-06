@@ -8,7 +8,7 @@
                 <div class="col">
                         <div class="form-group">
                             <label for="">No Meja</label>
-                            <input type="text" name="no_meja" id="meja" value="{{ request()->route('meja') }}" class="form-control">
+                            <input type="text" name="no_meja" id="meja" readonly value="{{ request()->route('meja') }}" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -145,7 +145,14 @@
             $("#table-pesanan").find('tbody').append(elm);
         })
            $("#table-pesanan").on('click','tbody .hapus-pembelian',function(){
-               console.log(3);
+               let id = $(this).attr('data-id');
+            for(let i=0;i<arr.length;i++){
+                if(arr[i].idMenu == id){
+                    arr.splice(i,1);
+                }
+            }
+            console.log(arr);
+               $(this).closest('tr').remove();
            })
 
            $("#table-pesanan").on('keyup','tbody .qty',function(){

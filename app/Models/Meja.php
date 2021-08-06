@@ -12,7 +12,4 @@ class Meja extends Model
     protected $primaryKey = 'id_meja';
     public $timestamps = false;
 
-    public function getAllMeja(){
-        return Meja::all();
-    }
 }

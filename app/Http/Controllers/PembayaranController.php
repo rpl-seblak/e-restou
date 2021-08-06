@@ -7,6 +7,8 @@ use App\Models\Meja;
 use App\Models\Menu;
 use App\Models\Pesanan;
 use App\Models\DetailPesanan;
+use DataTables;
+use Carbon\Carbon;
 
 class PembayaranController extends Controller
 {
@@ -29,8 +31,44 @@ class PembayaranController extends Controller
         return redirect()->route('kasir.pembayaran');
     }
 
-    public function laporan(){
-        $pembayaran = Pesanan::where('status','=','paid')->get();
-        return view('kasir.laporan',compact('pembayaran'));
+    public function laporan(Request $request){
+        if ($request->ajax()) {
+            $pembayaran = Pesanan::select('*')->where('status','=','paid')->latest('tanggal_pemesanan');
+            $data;
+            if ($request->has('bulan') && $request->bulan != null) {
+                // dd(Carbon::parse($request->bulan)->month);
+                $data = $pembayaran->whereRaw('MONTH(tanggal_pemesanan) = '.Carbon::parse($request->bulan)->month.
+                ' AND YEAR(tanggal_pemesanan) = '.Carbon::parse($request->bulan)->year)->get();
+            }else{
+                $data = $pembayaran->get();
+            }
+            // dd($pembayaran->get());
+            // $data = \DB::table('pesanan')->where('status','=','paid')->select('*')->orderBy('tanggal_pemesanan');
+            return Datatables::of($data)
+                    ->editColumn('total_pembayaran', function ($pesanan) {
+                        return $pesanan->total_pembayaran ? "Rp ".number_format($pesanan->total_pembayaran,0,'','.') : '';
+                    })
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+     
+                           $btn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm">View</a>';
+    
+                            return $btn;
+                    })
+                    ->make(true);
+        }
+        return view('kasir.laporan');
+    }
+
+    public function filter(Request $request){
+        $pesanan = DB::table('pesanan')->get();
+        return Datatables::of($users)
+            ->filter(function ($query) use ($request) {
+                if ($request->has('bulan')) {
+                    $query->where('tanggal_pemesanan', '=', $request->bulan);
+                }
+
+            })
+            ->make(true);
     }
 }

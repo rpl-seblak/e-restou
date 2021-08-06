@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MejaController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PembayaranController;
 
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pembayaran/{id}',[PembayaranController::class,'showPembayaran'])->name('kasir.form-pembayaran');
             Route::put('/pembayaran/{id}',[PembayaranController::class,'prosesPembayaran'])->name('kasir.proses-pembayaran');
             Route::get('/laporan',[PembayaranController::class,'laporan'])->name('kasir.laporan');
+            Route::get('/filter-laporan',[PembayaranController::class,'filter'])->name('kasir.laporan-filter');
         });
     });
 
@@ -54,7 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:pelayan'])->group(function () {
         Route::prefix('pelayan')->group(function () {
             Route::view('/dashboard','pelayan.index')->name('pelayan.index');
-            Route::get('/meja',[PesananController::class , 'tampilMeja'])->name('pelayan.meja');
+            Route::get('/meja',[MejaController::class , 'tampilMeja'])->name('pelayan.meja');
+            Route::put('/meja/{id}',[MejaController::class,'ubahStatusMeja'])->name('pelayan-meja.selesai');
 
             Route::get('/pesanan',[PesananController::class,'listPesananPelayan'])->name('pelayan-pesanan.index');
             Route::get('/pesanan/{meja}',[PesananController::class,'createPesanan'])->name('pelayan-pesanan.create');
