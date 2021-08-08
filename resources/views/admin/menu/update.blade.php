@@ -1,6 +1,7 @@
 @extends('layouts.master-pegawai')
 @section('section-header','Ubah Data Menu')
 @section('content-pegawai')
+<div class="col-3">
 <div class="card">
             <div class="card-body">
            
@@ -12,23 +13,29 @@
                     @method('PUT')
                         <div class="form-group">
                             <label>Nama Menu</label>
+                            <div class="col-10">
                             <input type="text" name="nama_menu" value="{{$menu->nama_menu}}" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
                             @error('nama_menu')
                                 <h6 class="text-danger">{{ $message }}</h6>
                             @enderror
                         </div>
+                        </div>
                         <div class="form-group">
                             <label>Harga</label>
+                            <div class="col-10">
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Rp</div>
                                 </div>
                                 <input type="number" value="{{$menu->harga_menu}}" name="harga" class="form-control" id="inlineFormInputGroup">
                             </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label>Stok</label>
+                            <label>Jumlah Menu</label>
+                            <div class="col-10">
                             <input type="number" name="stok" class="form-control" value="{{$menu->stok}}" id="inlineFormInputGroup" min="1">
+                        </div>
                         </div>
                         <!-- <div class="form-group">
                             <label>Foto Baru</label>
@@ -40,5 +47,6 @@
                     </div>
                 </div>
             </div>
+</div>
 </div>
 @endsection

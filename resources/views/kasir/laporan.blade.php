@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <p>Total : <span id="totalpendapatan"></span></p>
+        <p>Total Pendapatan : <span id="totalpendapatan"></span></p>
     </div>
 </div>
 
@@ -54,6 +54,7 @@
             "processing": true,
             "serverSide": true,
             "searching" : false,
+            "lengthChange": false,
             ajax:{
                     url:"{{ route('kasir.laporan') }}",
                     data: function (d) {
