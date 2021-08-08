@@ -8,13 +8,24 @@
                 <div class="h3">Pembayaran</div>
             </div>
             <div class="card-body">
-               <div class="row">
-                   <div class="col-md-4">
-                       <p>Id Pesanan : {{ $pesanan->id_pesanan }}</p>
-                       <p>Nama Pelanggan : {{ $pesanan->nama_pelanggan }}</p>
-                       <p>No Meja : {{ $pesanan->id_meja }}</p>
-                   </div>
-               </div>
+            <div class="form-group row">
+                    <label for="text" class="col-1 col-form-label">Id Pesanan</label> 
+                    <div class="col-2">
+                    <input id="text" name="text" type="text" class="form-control" value="{{ $pesanan->id_pesanan }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="text" class="col-1 col-form-label">Nama Pelanggan</label> 
+                    <div class="col-2">
+                    <input id="text" name="text" type="text" class="form-control" value="{{ $pesanan->nama_pelanggan }}" readonly>
+                    </div>
+                </div> 
+                <div class="form-group row">
+                    <label for="text" class="col-1 col-form-label">No Meja</label> 
+                    <div class="col-2">
+                    <input id="text" name="text" type="text" class="form-control" value="{{ $pesanan->id_meja }}" readonly>
+                    </div>
+                </div> 
                 <div class="table-responsive">
                     <table class="table table-striped dataTable no-footer" id="table-1">
                         <thead>
@@ -46,12 +57,16 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="">Tunai</label>
+                        <div class="col-2">
                         <input type="number" class="form-control" id="uang" name="uang">
+                    </div>
                     </div>
 
                     <div class="form-group">
                         <label for="">Kembalian</label>
+                        <div class="col-2">
                         <input type="number" readonly id="kembalian" class="form-control" name="kembalian">
+                    </div>
                     </div>
                     <button class="btn btn-primary">Bayar</button>
                     <a class="btn btn-info" id="cetak" href="{{ route('struk',$pesanan->id_pesanan) }}" target="_blank" data-id="{{ $pesanan->id_pesanan }}">Cetak Struk</a>
