@@ -17,7 +17,7 @@
                         </div>
 
                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Pilih Menu</button>
-                    <button class="btn btn-primary" id="tes-url">Tes</button>
+                   
                 </div>
             </div>
 

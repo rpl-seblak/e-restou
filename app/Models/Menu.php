@@ -26,4 +26,10 @@ class Menu extends Model
     public function kurangiStok($id,$jumlah){
         $stok = DB::table('menu')->where('id_menu',$id)->decrement('stok',$jumlah);
     }
+
+    public function totalMenu(){
+        $jumlah = $this->count();
+        $stok = $this->select('stok')->sum('stok');
+        return compact('jumlah','stok');
+    }
 }

@@ -12,4 +12,16 @@ class Meja extends Model
     protected $primaryKey = 'id_meja';
     public $timestamps = false;
 
+    public function getAllMeja(){
+        return $this->count();
+    }
+
+    public function mejaKosong(){
+        return $this->where('ketersediaan','=',true)->count();
+    }
+
+    public function mejaTerisi(){
+        return $this->where('ketersediaan','=',false)->count();
+    }
+
 }

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Menu;
 use App\Models\Pesanan;
 use App\Models\DetailPesanan;
+use App\Models\Meja;
 
 class PesananController extends Controller
 {

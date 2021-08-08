@@ -93,7 +93,6 @@
             ],
             dom: 'Bfrtip',
             buttons: [
-                'print',
                 {
                     messageTop : 'Laporan Periode : '+periode,
                     messageBottom : 'tes',

@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -34,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::view('/dashboard','layouts.dashboard-pegawai')->middleware(['role:kasir','role:pelayan','role:koki']);
     Route::middleware(['role:kasir'])->group(function () {
         Route::prefix('kasir')->group(function () {
-            Route::view('/dashboard','kasir.index')->name('kasir.index');
+            Route::get('/dashboard',[DashboardController::class , 'dashboardKasir'])->name('kasir.index');
             Route::get('/pembayaran',[PembayaranController::class,'listPembayaran'])->name('kasir.pembayaran');
             Route::get('/pembayaran/{id}',[PembayaranController::class,'showPembayaran'])->name('kasir.form-pembayaran');
             Route::put('/pembayaran/{id}',[PembayaranController::class,'prosesPembayaran'])->name('kasir.proses-pembayaran');
@@ -45,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:koki'])->group(function () {
         Route::prefix('koki')->group(function () {
-            Route::view('/dashboard','koki.index')->name('koki.index');
+            Route::get('/dashboard',[DashboardController::class , 'dashboardKoki'])->name('koki.index');
             Route::resource('menu', MenuController::class);
             Route::get('/pesanan',[PesananController::class,'listPesananKoki'])->name('koki-pesanan.index');
             Route::get('/pesanan/{id}',[PesananController::class,'detailPesananKoki'])->name('koki.detail-pesanan');
@@ -55,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:pelayan'])->group(function () {
         Route::prefix('pelayan')->group(function () {
-            Route::view('/dashboard','pelayan.index')->name('pelayan.index');
+            Route::get('/dashboard',[DashboardController::class , 'dashboardPelayan'])->name('pelayan.index');
             Route::get('/meja',[MejaController::class , 'tampilMeja'])->name('pelayan.meja');
             Route::put('/meja/{id}',[MejaController::class,'ubahStatusMeja'])->name('pelayan-meja.selesai');
 

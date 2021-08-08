@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-body">
         <h2 class="text-center">
-            Selamat Datang {{ Auth::user()->role }}
+            Selamat Datang {{ Auth::user()->role }} asd
         </h2>
     </div>
 </div>

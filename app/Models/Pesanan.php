@@ -29,4 +29,9 @@ class Pesanan extends Model
     public function detail_pesanan(){
         return $this->hasMany(DetailPesanan::class,'id_pesanan');
     }
+
+    public function getPendapatan(){
+        $pendapatan = $this->select('total_pembayaran')->where('tanggal_pemesanan',Carbon::now()->format('Y-m-d'))->sum('total_pembayaran');
+        return compact('pendapatan');
+    }
 }
