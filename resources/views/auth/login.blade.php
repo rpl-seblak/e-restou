@@ -8,12 +8,14 @@
             <div class="login-brand">
               <!-- <img src="../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
             </div>
-
+            
             <div class="card card-primary">
+              <div class="card-header">
+              <h4>
+                LOGIN
+              </h4>
+              </div>
               <div class="card-body">
-                <h2 class="text-center">
-                  LOGIN
-                </h2>
                 <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                     @csrf
                   <div class="form-group">

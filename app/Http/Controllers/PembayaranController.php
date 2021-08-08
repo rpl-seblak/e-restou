@@ -27,7 +27,7 @@ class PembayaranController extends Controller
         $pesanan = Pesanan::where('id_pesanan',$id)->first();
         $pesanan->status = 'paid';
         $pesanan->save();
-
+        $request->session()->flash('status', 'Pembayaran Sukses');
         return redirect()->route('kasir.pembayaran');
     }
 
