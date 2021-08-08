@@ -25,6 +25,9 @@
                                     {{ $value->status }}
                                 </td>
                                 <td>
+                                <button type="button" data-id="{{$value->id_pesanan}}" class="btn btn-primary detail" data-toggle="modal" data-target="#exampleModal">
+                                    Detail
+                                </button>
                                     @if($value->status == 'cooked')
                                     <form action="{{ route('pelayan-pesanan.served',$value->id_pesanan) }}" method="POST">
                                         @csrf
@@ -44,5 +47,28 @@
 
 @endsection
 @push('script')
-
+<script>
+    $(document).ready(function(){
+        $(".detail").click(function(){
+            let id = $(this).attr('data-id');
+            $.ajax({
+                url: "/pesanan/"+id,
+                method:'GET',
+                success:function(res){
+                    console.log(res);
+                    let elm = '';
+                    for(data of res.data){
+                        elm += `
+                            <tr>
+                                <td>${data.nama_menu}</td>
+                                <td>${data.qty}</td>
+                            </tr>
+                        `;
+                    }
+                    $(".detail-table tbody").html(elm);
+                }
+            })
+        })
+    })
+</script>
 @endpush

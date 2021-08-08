@@ -26,6 +26,12 @@ class PesananController extends Controller
         return view('koki.detail-pesanan',compact('pesanan','detail'));
     }
 
+    public function detailPesanan($id){
+        $detail = DB::table('detail_pesanan')->join('menu','detail_pesanan.id_menu','=','menu.id_menu')
+        ->select('detail_pesanan.*','menu.nama_menu')->where('id_pesanan',$id)->get();
+        return response()->json(['code'=>200, 'data'=>$detail], 200);
+    }
+
     public function listPesananPelayan(){
         $pesananObj = new Pesanan;
         $pesanan = $pesananObj->getProcessedPesanan();

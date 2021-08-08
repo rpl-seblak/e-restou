@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary mb-2" id="filter">Cari</button>
+        <button class="btn btn-primary mb-5" id="filter">Cari</button>
         <div class="row">
             <div class="col-lg-12">
             <div class="table-responsive mr-0">
@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+        <p>Total : <span id="totalpendapatan"></span></p>
     </div>
 </div>
 
@@ -42,10 +43,13 @@
 @endsection
 @push('script')
 <script>
-    $(document).ready(function(){
+    window.onload = function(){
+        $(document).ready(function(){
         let periode = new Date().toLocaleDateString('en-CA');
         console.log(periode);
-
+        const num2curr = num => 'Rp'+new Intl.NumberFormat('id-ID', { style: 'decimal', currency: 'IDR' }).format(num);
+        console.log(num2curr(184300))
+        let pesan = `Tanggal : ${periode} \n Total Pendapatan : `+$('#totalpendapatan').text();
         let tblLaporan = $('#table-laporan').DataTable({
             "processing": true,
             "serverSide": true,
@@ -62,7 +66,9 @@
             dom: 'Bfrtip',
             buttons: [
                 {
-                    messageTop : 'Tanggal : '+periode,
+                    messageTop : function(){
+                        return `Tanggal : ${periode} \n Total Pendapatan : ${$("#totalsalary").text()}`;
+                    },
                     text: 'Download',
                     extend: 'pdfHtml5',
                     title:'Laporan Pendapatan E-restou',
@@ -81,13 +87,27 @@
                     }
                 }
                 
-            ]
+            ],
+            drawCallback: function(){
+            const totalSalary = this
+            .api()
+            .column(1)
+            .data()
+            .toArray()
+            //remove '$',',', keep decimal separator '.', summarize
+            .reduce((total,salary) => total+=Number(salary.split(' ')[1].replace('.','')),0);
+            //insert result into the <span> text
+            $('#totalpendapatan').text(`${num2curr(totalSalary)}`);
+        }
         } );
 
         $('#filter').click(function(){
             tblLaporan.draw();
             
         })
+        console.log(pesan);
+        console.log($('#totalsalary').text());
     })
+    }
 </script>
 @endpush

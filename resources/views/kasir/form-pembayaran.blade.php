@@ -54,6 +54,7 @@
                         <input type="number" readonly id="kembalian" class="form-control" name="kembalian">
                     </div>
                     <button class="btn btn-primary">Bayar</button>
+                    <a class="btn btn-info" id="cetak" href="{{ route('struk',$pesanan->id_pesanan) }}" target="_blank" data-id="{{ $pesanan->id_pesanan }}">Cetak Struk</a>
                 </form>
             </div>
         </div>
@@ -74,5 +75,18 @@
         console.log(kembalian);
         $("#kembalian").val(kembalian);
     })
+
+    // $("#cetak").click(function(){
+    //     let id = $(this).attr('data-id');
+    //     $.ajax({
+    //         url:"/struk/"+id,
+    //         method:'GET',
+    //         success:function(res){
+    //             if(res.code == 200){
+    //                 window.open()
+    //             }
+    //         }
+    //     })
+    // })
 </script>
 @endpush

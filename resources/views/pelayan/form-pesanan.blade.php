@@ -193,7 +193,13 @@
                     },
                     success:function(res){
                         if(res.code == 200){
-                            window.location.href = '/pelayan/meja';
+                            swal({
+                            title: 'Pesan',
+                            text: `Pesanan Berhasil Di Tambahkan`,
+                            icon: 'success',
+                            closeOnClickOutside: false
+                            }).then(()=>window.location.href = '/pelayan/meja');
+                            // window.location.href = '/pelayan/meja';
                         }
                     }
                 })               

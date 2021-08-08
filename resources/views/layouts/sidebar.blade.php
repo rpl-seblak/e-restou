@@ -8,6 +8,7 @@
           </div>
           <ul class="sidebar-menu">
               <!-- <li class="menu-header">Menu</li> -->
+              @if(Auth::user()->role == 'koki')
               <li class="nav-item">
                 <a href="{{route('koki.index')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>

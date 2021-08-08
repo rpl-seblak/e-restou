@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/pesanan/{id}',[PesananController::class,'updateStatusPesanan'])->name('pelayan-pesanan.served');
         });
     });
+    Route::get('/pesanan/{id}',[PesananController::class,'detailPesanan'])->name('detail-pesanan');
     // Route::view('/menu','menu.index')->name('kasir.index');
 });
 
@@ -73,3 +74,4 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/struk/{id}',[PembayaranController::class,'cetakStruk'])->name('struk');

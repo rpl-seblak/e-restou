@@ -67,4 +67,10 @@ class PembayaranController extends Controller
             })
             ->make(true);
     }
+
+    public function cetakStruk($id){
+        $pesanan = Pesanan::where('id_pesanan',$id)->first();
+        $detail = $pesanan->detail_pesanan;
+        return view('kasir.struk',compact('pesanan','detail'));
+    }
 }

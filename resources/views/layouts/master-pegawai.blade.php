@@ -16,6 +16,7 @@
     </div>
 </div>
 @include('layouts.footer')
+@include('layouts.modal-detail')
 @endsection
 
 @push('script')
