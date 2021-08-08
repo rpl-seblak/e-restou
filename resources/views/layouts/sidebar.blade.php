@@ -7,7 +7,7 @@
             <a href="#">EU</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="menu-header">Menu</li>
+              <!-- <li class="menu-header">Menu</li> -->
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
@@ -37,7 +37,7 @@
                 <a href="{{ route('kasir.pembayaran') }}" class="nav-link"><i class="fas fa-wallet"></i><span>Pembayaran</span></a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('kasir.laporan') }}" class="nav-link"><i class="fas fa-wallet"></i><span>Laporan</span></a>
+                <a href="{{ route('kasir.laporan') }}" class="nav-link"><i class="fas fa-file-invoice-dollar"></i><span>Laporan</span></a>
               </li>
               @endif
               <li class="nav-item">

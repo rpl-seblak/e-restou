@@ -33,7 +33,9 @@ class PembayaranController extends Controller
 
     public function laporan(Request $request){
         if ($request->ajax()) {
-            $pembayaran = Pesanan::select('*')->where('status','=','paid')->latest('tanggal_pemesanan');
+            $pembayaran = Pesanan::select(\DB::raw('tanggal_pemesanan, SUM(total_pembayaran) as pendapatan'))
+            ->groupBy('tanggal_pemesanan')
+            ->where('status','=','paid')->latest('tanggal_pemesanan');
             $data;
             if ($request->has('bulan') && $request->bulan != null) {
                 // dd(Carbon::parse($request->bulan)->month);
@@ -45,16 +47,10 @@ class PembayaranController extends Controller
             // dd($pembayaran->get());
             // $data = \DB::table('pesanan')->where('status','=','paid')->select('*')->orderBy('tanggal_pemesanan');
             return Datatables::of($data)
-                    ->editColumn('total_pembayaran', function ($pesanan) {
-                        return $pesanan->total_pembayaran ? "Rp ".number_format($pesanan->total_pembayaran,0,'','.') : '';
+                    ->editColumn('pendapatan', function ($pesanan) {
+                        return $pesanan->pendapatan ? "Rp ".number_format($pesanan->pendapatan,0,'','.') : '';
                     })
                     ->addIndexColumn()
-                    ->addColumn('action', function($row){
-     
-                           $btn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm">View</a>';
-    
-                            return $btn;
-                    })
                     ->make(true);
         }
         return view('kasir.laporan');
