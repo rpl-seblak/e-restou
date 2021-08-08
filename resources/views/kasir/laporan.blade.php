@@ -1,6 +1,5 @@
 @extends('layouts.master-pegawai')
 @section('content-pegawai')
-
 <div class="card">
     <div class="card-header">
         Laporan
@@ -19,8 +18,9 @@
         </div>
         <button class="btn btn-primary mb-5" id="filter">Cari</button>
         <div class="row">
-            <div class="col-lg-8">
+            
             <div class="table-responsive mr-0">
+                <div class="col-lg-8 col-md-12 col-sm-12">
                     <table class="table table-striped dataTable no-footer" id="table-laporan">
                         <thead>
                             <tr role="row">
@@ -54,7 +54,8 @@
             "processing": true,
             "serverSide": true,
             "searching" : false,
-            "lengthChange": false,
+            "bInfo" : false,
+            "paging": false,
             ajax:{
                     url:"{{ route('kasir.laporan') }}",
                     data: function (d) {
