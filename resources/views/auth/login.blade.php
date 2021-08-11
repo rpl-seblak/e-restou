@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; Seblak 2021
+              {{-- Copyright &copy; Seblak 2021 --}}
             </div>
           </div>
         </div>

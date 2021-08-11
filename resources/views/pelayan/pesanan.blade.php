@@ -32,7 +32,7 @@
                                     <form action="{{ route('pelayan-pesanan.served',$value->id_pesanan) }}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <button class="btn btn-primary">Disajikan</button>
+                                        <button class="btn btn-info mt-2">Sajikan</button>
                                     </form>
                                     @endif
                                 </td>

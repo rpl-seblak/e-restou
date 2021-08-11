@@ -23,11 +23,11 @@ class PembayaranController extends Controller
         return view('kasir.form-pembayaran',compact('pesanan','detail'));
     }
 
-    public function prosesPembayaran($id){
+    public function prosesPembayaran(Request $request, $id){
         $pesanan = Pesanan::where('id_pesanan',$id)->first();
         $pesanan->status = 'paid';
         $pesanan->save();
-        $request->session()->flash('status', 'Pembayaran Sukses');
+        $request->session()->flash('pesan', 'Pembayaran Sukses');
         return redirect()->route('kasir.pembayaran');
     }
 

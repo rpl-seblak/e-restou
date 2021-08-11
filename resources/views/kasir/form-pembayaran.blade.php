@@ -80,7 +80,7 @@
 @push('script')
 <script>
     let kembalian = 0;
-    const total = $("table tbody tr").find('#total').text();
+    const total = '{{$pesanan->total_pembayaran}}';
     $("#uang").keyup(function(){
         let uang = $(this).val();
         kembalian += uang*1 - total*1;
