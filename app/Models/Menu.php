@@ -12,7 +12,8 @@ class Menu extends Model
     use HasFactory;
     protected $table = "menu";
     protected $primaryKey = 'id_menu';
-    protected $fillable = [
+    public $timestamps = false;
+        protected $fillable = [
             'nama_menu',
             'harga_menu',
             'stok',

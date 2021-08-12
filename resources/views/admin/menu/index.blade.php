@@ -8,12 +8,7 @@
             <div class="card-header">
                 <div class="h3">Daftar Menu</div>
             </div>
-            <div class="card-body">
-                @if (@session('pesan'))
-                <div class="alert alert-success pesan">
-                    <p>{{ session('pesan') }}</p>
-                </div>
-                @endif
+            <div class="card-body"> 
                 <a href="{{route('menu.create')}}" class="btn btn-primary float-right">Tambah Menu</a>
                 <div class="table-responsive">
                     <table class="table table-striped dataTable no-footer" id="table-1">
@@ -67,7 +62,22 @@
     //     ]
     // });
     $(document).ready(function () {
-        $('#table-1').DataTable();
+        $('#table-1').DataTable({
+            "searching" : false,
+            "bInfo" : false,
+            "paging": false,});
     });
+
+    
 </script>
+
+@if (session('pesan'))
+    <script>
+      swal({
+                            title: 'Pesan',
+                            text: `{{ session('pesan') }}`,
+                            icon: 'success',
+                            });
+    </script>
+@endif
 @endpush

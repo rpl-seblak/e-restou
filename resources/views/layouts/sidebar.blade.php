@@ -44,6 +44,11 @@
                 <a href="{{ route('kasir.laporan') }}" class="nav-link"><i class="fas fa-file-invoice-dollar"></i><span>Laporan</span></a>
               </li>
               @endif
+              @if(Auth::user()->role == 'koki')
+              <li class="nav-item">
+                <a href="{{route('menu.index')}}" class="nav-link"><i class="fas fa-book"></i><span>Menu</span></a>
+              </li>
+              @endif
               <li class="nav-item">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="nav-link"><i class="fas fa-power-off"></i><span>Logout</span></a>

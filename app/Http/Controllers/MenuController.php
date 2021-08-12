@@ -43,7 +43,7 @@ class MenuController extends Controller
             'harga_menu'=>$request->harga,
             'stok'=>$request->stok,
         ]);
-
+        $request->session()->flash('status', 'Menu Sukses Ditambahkan');
         return redirect()->route('menu.index')->with('pesan','Menu Berhasil DiTambahkan');
     }
 
@@ -96,6 +96,6 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return redirect()->route('menu.index')->with('pesan','Menu Berhasil DiHapus');
+        return redirect()->route('menu.index');
     }
 }

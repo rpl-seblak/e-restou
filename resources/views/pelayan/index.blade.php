@@ -38,5 +38,13 @@
         </div>
     </div>
 </div>
-
+@if (session('pesan'))
+    <script>
+      swal({
+                            title: 'Pesan',
+                            text: `{{ session('pesan') }}`,
+                            icon: 'success',
+                            });
+    </script>
+@endif
 @endsection

@@ -37,6 +37,15 @@
 
 
 @endsection
-@push('script')
 
+@push('script')
+@if (session('pesan'))
+    <script>
+      swal({
+                            title: 'Pesan',
+                            text: `{{ session('pesan') }}`,
+                            icon: 'success',
+                            });
+    </script>
+@endif
 @endpush

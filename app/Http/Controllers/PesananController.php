@@ -90,7 +90,7 @@ class PesananController extends Controller
                 $menu->kurangiStok($detailPesanan[$j]["idMenu"],$detailPesanan[$j]["qty"]);
             }
         },5);
-
+        
         return response()->json(['code'=>200, 'message'=>'Transaksi Berhasil'], 200);
 
     }

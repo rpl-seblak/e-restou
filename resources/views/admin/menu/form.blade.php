@@ -2,6 +2,7 @@
 @section('section-header','Data Menu')
 @section('content-pegawai')
 
+<div class="col-3">
 <div class="card">
             <div class="card-body">
             @if (@session('pesan'))
@@ -17,10 +18,12 @@
                        
                         <div class="form-group">
                             <label>Nama Menu</label>
+                            <div class="col-10">
                             <input type="text" name="nama_menu" class="form-control" id="formGroupExampleInput" >
                             @error('nama_menu')
                                 <h6 class="text-danger">{{ $message }}</h6>
                             @enderror
+                        </div>
                         </div>
               <!--         <div class="form-group">
                             <label>Satuan</label>
@@ -29,17 +32,21 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Harga</label>
-                                <div class="input-group mb-2">
+                                <div class="col-10">
+                                <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Rp</div>
                                     </div>
                                     <input type="number" name="harga" class="form-control" id="inlineFormInputGroup">
                                 </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Stok</label>
+                            <label>Jumlah Menu</label>
+                            <div class="col-10">
                             <input type="number" name="stok" class="form-control" id="inlineFormInputGroup" min="1">
+                        </div>
                         </div>
                         <!-- <div class="form-group">
                             <label>Foto</label>
@@ -52,6 +59,9 @@
                 </div>
             </div>
 </div>
+</div>
+
+
 
 @endsection
 @push('script')

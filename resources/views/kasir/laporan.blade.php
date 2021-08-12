@@ -1,6 +1,5 @@
 @extends('layouts.master-pegawai')
 @section('content-pegawai')
-
 <div class="card">
     <div class="card-header">
         Laporan
@@ -19,8 +18,9 @@
         </div>
         <button class="btn btn-primary mb-5" id="filter">Cari</button>
         <div class="row">
-            <div class="col-lg-12">
+            
             <div class="table-responsive mr-0">
+                <div class="col-lg-8 col-md-12 col-sm-12">
                     <table class="table table-striped dataTable no-footer" id="table-laporan">
                         <thead>
                             <tr role="row">
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <p>Total : <span id="totalpendapatan"></span></p>
+        <p>Total Pendapatan : <span id="totalpendapatan"></span></p>
     </div>
 </div>
 
@@ -53,6 +53,9 @@
         let tblLaporan = $('#table-laporan').DataTable({
             "processing": true,
             "serverSide": true,
+            "searching" : false,
+            "bInfo" : false,
+            "paging": false,
             ajax:{
                     url:"{{ route('kasir.laporan') }}",
                     data: function (d) {
