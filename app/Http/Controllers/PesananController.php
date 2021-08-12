@@ -39,7 +39,7 @@ class PesananController extends Controller
     }
 
     public function createPesanan(){
-        $menu = Menu::all();
+        $menu = Menu::where('stok','>','0')->get();
         return view('pelayan.form-pesanan',compact('menu'));
     }
 
